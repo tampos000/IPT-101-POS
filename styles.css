@@ -1,0 +1,929 @@
+* {
+    box-sizing: border-box
+}
+
+[hidden] {
+    display: none !important
+}
+
+body {
+    margin: 0;
+    color: #222;
+    background: #fff;
+    font: 14px Arial, sans-serif
+}
+
+button,
+input {
+    font: inherit
+}
+
+button {
+    cursor: pointer
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0
+}
+
+h1 {
+    font-size: 28px
+}
+
+h2 {
+    font-size: 21px
+}
+
+.auth-screen {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: #f5f5f5
+}
+
+.auth-panel {
+    width: min(400px, 100%);
+    padding: 30px;
+    border: 1px solid #ccc;
+    background: #fff
+}
+
+.auth-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    font-size: 20px;
+    font-weight: bold
+}
+
+.auth-panel h1 {
+    font-size: 28px
+}
+
+.auth-panel > p {
+    margin-top: 8px;
+    color: #666;
+    font-size: 13px
+}
+
+.auth-form {
+    display: grid;
+    gap: 14px;
+    margin-top: 24px
+}
+
+.auth-form label {
+    display: grid;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: bold
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb
+}
+
+.auth-submit {
+    padding: 11px;
+    border: 1px solid #222;
+    color: #fff;
+    background: #222;
+    font-weight: bold
+}
+
+.auth-switch {
+    margin-top: 16px;
+    padding: 0;
+    border: 0;
+    color: #555;
+    background: transparent;
+    font-size: 12px;
+    text-decoration: underline
+}
+
+.auth-error {
+    min-height: 16px;
+    color: #922;
+    font-size: 12px
+}
+
+.logout-button {
+    padding: 8px 10px;
+    border: 1px solid #999;
+    background: #fff
+}
+
+.section-kicker,
+.eyebrow {
+    color: #666;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase
+}
+
+.app-shell {
+    display: flex;
+    min-height: 100vh
+}
+
+.app-shell.customer-mode .sidebar {
+    display: none
+}
+
+.app-shell.customer-mode .main-content {
+    width: 100%
+}
+
+.app-shell.customer-mode .workspace {
+    grid-template-columns: minmax(0, 1fr) 360px
+}
+
+.app-shell.customer-mode .order-panel {
+    background: #fff
+}
+
+.sidebar{
+    width:220px;
+    flex:0 0 220px;
+    padding:24px 16px;
+    border-right:1px solid #ccc;
+    background:#f5f5f5;
+    display:flex;
+    flex-direction:column
+}
+
+.brand-lockup{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:0 8px 32px
+}
+
+.brand-mark,.avatar{
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    color:#fff;
+    background:#333
+}
+
+.brand-mark{
+    width:34px;
+    height:34px;
+    font-size:20px;
+    font-weight:bold
+}
+
+.brand-name{
+    font-size:17px;
+    font-weight:bold
+}
+
+.brand-subtitle{
+    margin-top:3px;
+    color:#666;
+    font-size:10px
+}
+
+.primary-nav{
+    display:grid;
+    gap:4px
+}
+
+.nav-item{
+    width:100%;
+    padding:11px;
+    border:0;
+    background:transparent;
+    text-align:left
+}
+
+.nav-item:hover,.nav-item.active{
+    background:#ddd
+}
+
+.nav-icon{
+    display:inline-block;
+    width:24px
+}
+
+.nav-count{
+    float:right
+}
+
+.sidebar-bottom{
+    margin-top:auto
+}
+
+.main-content{
+    min-width:0;
+    flex:1
+}
+
+.topbar{
+    min-height:105px;
+    padding:24px 32px;
+    border-bottom:1px solid #ccc;
+    display:flex;
+    align-items:center;
+    justify-content:space-between
+}
+
+.topbar h1{
+    margin-top:8px
+}
+
+.topbar-actions,
+.menu-tools {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap
+}
+
+.icon-button,
+.clear-button,
+.guest-button,
+.note-button,
+.modal-close {
+    border:0;
+    background:transparent
+}
+
+.outline-button{
+    padding:9px 12px;
+    border:1px solid #999;
+    background:#fff
+}
+
+.workspace{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 350px
+}
+
+.menu-panel,.order-panel{
+    padding:30px
+}
+
+.menu-toolbar,
+.order-heading,
+.order-meta {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px
+}
+
+.search-box{
+    width:190px;
+    padding:7px 9px;
+    border:1px solid #bbb;
+    display:flex;
+    gap:6px
+}
+
+.search-box input{
+    width:100%;
+    border:0;
+    outline:0
+}
+
+.category-tabs {
+    display: flex;
+    gap: 18px;
+    margin: 26px 0 20px;
+    border-bottom: 1px solid #ccc;
+    overflow-x: auto
+}
+
+.category-tab {
+    padding: 8px 0;
+    border: 0;
+    background: transparent;
+    white-space: nowrap
+}
+
+.category-tab.active {
+    border-bottom: 2px solid #222;
+    font-weight: bold
+}
+
+.menu-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:14px
+}
+
+.menu-empty {
+    grid-column: 1 / -1;
+    padding: 40px 10px;
+    color: #666;
+    text-align: center
+}
+
+.menu-card {
+    min-height:155px;
+    border:1px solid #ccc;
+    background:#fff
+}
+
+.menu-card-content{
+    height:100%;
+    padding:12px;
+    display:flex;
+    flex-direction:column
+}
+
+.menu-card h3{
+    font-size:14px
+}
+
+.menu-card p{
+    min-height:30px;
+    margin-top:5px;
+    color:#666;
+    font-size:12px
+}
+
+.card-meta {
+    margin-top: 8px
+}
+
+.stock-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: #eef5ee;
+    color: #245b2a;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    text-transform: uppercase
+}
+
+.stock-tag.out {
+    background: #fbeae9;
+    color: #8b2d2d
+}
+
+.card-bottom{
+    margin-top:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px
+}
+
+.card-actions {
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:6px;
+    flex-wrap:wrap
+}
+
+.price-button{
+    padding:5px 7px;
+    border:1px solid #999;
+    background:#fff;
+    font-size:10px
+}
+
+.remove-button{
+    color:#922
+}
+
+.add-button{
+    width:27px;
+    height:27px;
+    border:1px solid #222;
+    color:#fff;
+    background:#222
+}
+
+.add-button:disabled {
+    border-color: #999;
+    background: #999;
+    cursor: not-allowed;
+    opacity: .7
+}
+
+.order-panel{
+    min-height:calc(100vh - 105px);
+    border-left:1px solid #ccc;
+    background:#fafafa
+}
+
+.order-heading h2 span{
+    color:#666;
+    font-size:13px;
+    font-weight:normal
+}
+
+.order-meta{
+    margin-top:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid #ccc
+}
+
+.dine-pill{
+    padding:5px 8px;
+    border:1px solid #aaa;
+    font-size:11px
+}
+
+.guest-button{
+    margin-left:auto
+}
+
+.order-items{
+    min-height:260px
+}
+
+.empty-order{
+    padding:70px 10px;
+    color:#666;
+    text-align:center;
+    font-size:12px
+}
+
+.empty-order strong{
+    display:block;
+    margin-bottom:6px;
+    color:#222
+}
+
+.order-line{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:8px;
+    padding:14px 0;
+    border-bottom:1px solid #ddd
+}
+
+.order-line-main strong,
+.order-line-main small {
+    display:block
+}
+
+.order-line-main small{
+    margin-top:4px;
+    color:#666;
+    font-size:10px
+}
+
+.quantity-control{
+    grid-column:1;
+    display:flex;
+    gap:8px;
+    margin-left:34px
+}
+
+.quantity-control button{
+    width:20px;
+    height:20px;
+    padding:0;
+    border:1px solid #aaa;
+    background:#fff
+}
+
+.line-price{
+    grid-column:2;
+    grid-row:1
+}
+
+.ticket-footer{
+    padding-top:18px
+}
+
+.note-button{
+    color:#666
+}
+
+.totals{
+    margin-top:18px;
+    padding-top:12px;
+    border-top:1px solid #ccc
+}
+
+.totals div,
+.receipt-summary div {
+    display:flex;
+    justify-content:space-between;
+    margin:8px 0;
+    color:#666
+}
+
+.total-row,.receipt-total{
+    color:#222!important;
+    font-size:18px;
+    font-weight:bold
+}
+
+.checkout-button,
+.confirm-button {
+    width:100%;
+    padding:12px;
+    border:1px solid #222;
+    color:#fff;
+    background:#222
+}
+
+.checkout-button:disabled{
+    cursor:not-allowed;
+    opacity:.45
+}
+
+.toast {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    padding: 12px 16px;
+    color: #fff;
+    background: #222;
+    opacity: 0;
+    pointer-events: none
+}
+
+.toast.visible {
+    opacity: 1
+}
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    background: #0005;
+    opacity: 0;
+    pointer-events: none
+}
+
+.modal-backdrop.visible {
+    opacity: 1;
+    pointer-events: auto
+}
+
+.payment-modal,
+.receipt-modal,
+.history-modal,
+.add-item-modal,
+.edit-price-modal,
+.inventory-modal,
+.report-modal {
+    position: relative;
+    width: min(560px, calc(100% - 32px));
+    max-height: 80vh;
+    overflow: auto;
+    padding: 25px;
+    background: #fff
+}
+
+.payment-modal,
+.add-item-modal,
+.edit-price-modal {
+    width: min(420px, calc(100% - 32px))
+}
+
+.report-modal {
+    width: min(720px, calc(100% - 32px))
+}
+
+.inventory-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 20px
+}
+
+.inventory-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee
+}
+
+.inventory-row strong,
+.inventory-row small {
+    display: block
+}
+
+.inventory-row small {
+    color: #666;
+    font-size: 11px
+}
+
+.inventory-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px
+}
+
+.inventory-controls label {
+    display: grid;
+    gap: 5px;
+    color: #666;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase
+}
+
+.inventory-controls input {
+    width: 80px;
+    padding: 7px 8px;
+    border: 1px solid #ccc
+}
+
+.inventory-controls .confirm-button {
+    width: auto;
+    padding: 8px 12px
+}
+
+.report-content {
+    display: grid;
+    gap: 18px;
+    margin-top: 20px
+}
+
+.report-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px
+}
+
+.report-card {
+    padding: 14px;
+    border: 1px solid #ddd;
+    background: #fafafa
+}
+
+.report-card small {
+    display: block;
+    color: #666;
+    font-size: 11px;
+    text-transform: uppercase
+}
+
+.report-card strong {
+    display: block;
+    margin-top: 8px;
+    font-size: 22px
+}
+
+.report-section {
+    padding-top: 8px;
+    border-top: 1px solid #ddd
+}
+
+.report-section h3 {
+    margin-bottom: 8px;
+    font-size: 14px
+}
+
+.report-breakdown {
+    display: grid;
+    gap: 8px
+}
+
+.report-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+    font-size: 12px
+}
+
+.report-row:last-child {
+    border-bottom: 0;
+    padding-bottom: 0
+}
+
+.report-row span {
+    color: #666
+}
+
+.add-item-form {
+    display: grid;
+    gap: 14px;
+    margin-top: 20px
+}
+
+.add-item-form label {
+    display: grid;
+    gap: 8px;
+    color: #222;
+    font-size: 12px;
+    font-weight: 600
+}
+
+.add-item-form input,
+.add-item-form select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    font: inherit
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    font-size: 20px
+}
+
+.modal-total {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold
+}
+
+.payment-methods {
+    display: grid;
+    gap: 8px;
+    margin: 20px 0
+}
+
+.payment-method {
+    padding: 11px;
+    border: 1px solid #ccc;
+    background: #fff;
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    text-align: left
+}
+
+.payment-method.active {
+    border-color: #222;
+    background: #eee
+}
+
+.cash-tender {
+    display: grid;
+    gap: 8px;
+    margin: 16px 0
+}
+
+.cash-tender[hidden] {
+    display: none
+}
+
+.cash-tender input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    font: inherit
+}
+
+.cash-tender > div {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 12px
+}
+
+.cash-tender strong {
+    color: #222
+}
+
+.payment-method > span {
+    grid-row: span 2
+}
+
+.payment-method small,
+.receipt-header p,
+.receipt-meta,
+.receipt-payment,
+.history-order small,
+.history-order p {
+    color: #666;
+    font-size: 11px
+}
+
+.receipt-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #ccc
+}
+
+.receipt-header h2 {
+    font-size: 20px
+}
+
+.receipt-meta,
+.receipt-row,
+.receipt-summary div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px
+}
+
+.receipt-meta {
+    padding: 14px 0
+}
+
+.receipt-row {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 12px
+}
+
+.receipt-summary {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc
+}
+
+.receipt-payment {
+    margin: 16px 0 0
+}
+
+.receipt-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 22px
+}
+
+.receipt-actions button {
+    flex: 1
+}
+
+.history-modal h2 {
+    margin-top: 6px
+}
+
+.history-empty {
+    padding: 35px 0;
+    color: #666;
+    text-align: center
+}
+
+.history-order {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid #ddd
+}
+
+.history-order strong,
+.history-order small {
+    display: block
+}
+
+.history-order p {
+    grid-column: 1 / -1;
+    margin: 4px 0 0
+}
+
+@media (max-width: 800px) {
+    .sidebar { width: 64px; flex-basis: 64px; padding: 16px 8px }
+    .brand-lockup { padding: 0 0 25px }
+    .brand-lockup > div:last-child,
+    .sidebar .nav-item:not(.active),
+    .shift-card,
+    .user-button > :not(.avatar) { display: none }
+    .nav-item { font-size: 0; text-align: center }
+    .main-content { width: calc(100% - 64px) }
+    .workspace { display: block }
+    .order-panel { min-height: auto; border-top: 1px solid #ccc; border-left: 0 }
+}
+
+@media (max-width: 520px) {
+    .topbar { padding: 18px 16px }
+    .topbar-actions { gap: 5px }
+    .icon-button { display: none }
+    .menu-panel,
+    .order-panel { padding: 24px 16px }
+    .menu-toolbar { align-items: stretch; flex-direction: column }
+    .search-box { width: 100% }
+    .menu-grid { grid-template-columns: repeat(2, minmax(150px, 1fr)) }
+}
+
+@media (max-width: 400px) {
+    .menu-grid { grid-template-columns: 1fr }
+}
+
+@media print {
+    body > * { visibility: hidden }
+    .receipt-modal,
+    .receipt-modal *,
+    .report-modal,
+    .report-modal * { visibility: visible }
+    .receipt-modal,
+    .report-modal { position: absolute; inset: 0; width: 100% }
+    .receipt-actions { display: none }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>POS System</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<section class="auth-screen" id="authScreen"> 
+		<div class="auth-panel">
+			<div class="auth-brand"><div class="brand-mark">P</div><span>POS System</span></div>
+			<h1 id="authTitle">Log in</h1>
+			<p id="authMessage">Log in to manage the menu and orders.</p>
+			<form id="authForm" class="auth-form">
+				<label>Username<input id="authUsername" type="text" placeholder="Enter username" required></label>
+				<label>Password<input id="authPassword" type="password" placeholder="Enter password" required></label>
+				<label>Account type<select id="authRole"><option value="customer">Cashier</option><option value="admin">Admin</option></select></label>
+				<button class="auth-submit" id="authSubmit" type="submit">Log in</button>
+			</form>
+			<button class="auth-switch" id="authSwitch" type="button">Need an account? Sign up</button>
+			<p class="auth-error" id="authError" role="alert"></p>
+		</div>
+	</section>
+
+	<div class="app-shell" id="appView" hidden>
+		<aside class="sidebar">
+			<div class="brand-lockup"><div class="brand-mark">P</div><div><div class="brand-name">POS <span>System</span></div><div class="brand-subtitle">restaurant point of sale</div></div></div>
+			<nav class="primary-nav" aria-label="Primary navigation">
+				<button class="nav-item admin-only" id="inventoryButton" type="button"><span class="nav-icon">▣</span>Inventory</button>
+				<button class="nav-item admin-only" id="reportsButton" type="button"><span class="nav-icon">▤</span>Reports</button>
+				<button class="nav-item admin-only" id="historyButton" type="button"><span class="nav-icon">↺</span>History</button>
+			</nav>
+			<div class="sidebar-bottom">
+			</div>
+		</aside>
+		<main class="main-content">
+			<header class="topbar"><div><h1 id="welcomeTitle">Good afternoon</h1></div><div class="topbar-actions"><button class="icon-button admin-only" type="button" aria-label="Notifications">♧<span class="notification-dot"></span></button><button class="outline-button customer-only" id="customerHistoryButton" type="button">History</button><button class="logout-button" id="logoutButton" type="button">Log out</button></div></header>
+			<section class="workspace">
+				<div class="menu-panel">
+					<div class="menu-toolbar"><div><div class="section-kicker">Menu</div><h2>Menu</h2></div><div class="menu-tools"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search menu" aria-label="Search menu"></label><button class="outline-button admin-only" id="addItemButton" type="button">＋ Add item</button></div></div>
+					<div class="category-tabs" role="tablist" aria-label="Menu categories"><button class="category-tab active" data-category="All" type="button">All items</button><button class="category-tab" data-category="Food" type="button">Food</button><button class="category-tab" data-category="Drinks" type="button">Drinks</button></div>
+					<div class="menu-grid" id="menuGrid" aria-live="polite"></div>
+				</div>
+				<aside class="order-panel customer-only" aria-label="Current cart"><div class="order-heading"><div><div class="section-kicker" id="orderLabel">Your cart</div><h2><span id="orderTitle">Cart</span> <span id="orderNumber">#1048</span></h2></div><button class="clear-button" id="clearOrderButton" type="button">Clear</button></div><div class="order-items" id="orderItems"><div class="empty-order"><span>＋</span><strong>Your cart is empty</strong><p>Add something delicious from the menu.</p></div></div><div class="ticket-footer"><div class="totals"><div><span>Subtotal</span><strong id="subtotal">₱0.00</strong></div><div><span>Tax <small>(8.25%)</small></span><strong id="tax">₱0.00</strong></div><div class="total-row"><span>Total</span><strong id="total">₱0.00</strong></div></div><button class="checkout-button" id="checkoutButton" type="button" disabled>Pay now <span id="checkoutTotal">₱0.00</span><b>→</b></button></div></aside>
+			</section>
+		</main>
+	</div>
+	<div class="toast" id="toast" role="status"></div>
+	<div class="modal-backdrop customer-only" id="paymentModal" aria-hidden="true"><div class="payment-modal" role="dialog" aria-modal="true" aria-labelledby="paymentTitle"><button class="modal-close" id="closeModalButton" type="button" aria-label="Close payment dialog">×</button><div class="modal-kicker">Ready to complete</div><h2 id="paymentTitle">Choose payment</h2><p class="modal-total" id="modalTotal">₱0.00</p><div class="payment-methods"><button class="payment-method active" type="button" data-method="Card"><span>▣</span><b>Card</b><small>Tap, dip, or swipe</small></button><button class="payment-method" type="button" data-method="Cash"><span>◎</span><b>Cash</b><small>Record cash payment</small></button></div><div class="cash-tender" id="cashTender" hidden><label for="cashReceived">Amount received</label><input id="cashReceived" type="number" min="0" step="0.01" inputmode="decimal"><div><span>Change due</span><strong id="cashChange">₱0.00</strong></div></div><button class="confirm-button" id="confirmPaymentButton" type="button">Complete payment <span>→</span></button></div></div>
+	<div class="modal-backdrop" id="addItemModal" aria-hidden="true"><div class="add-item-modal" role="dialog" aria-modal="true" aria-labelledby="addItemTitle"><button class="modal-close" id="closeAddItemButton" type="button" aria-label="Close add item dialog">×</button><div class="modal-kicker">Menu management</div><h2 id="addItemTitle">Add menu item</h2><form id="addItemForm" class="add-item-form"><label>Item name<input id="addItemName" name="name" type="text" placeholder="Enter item name" required></label><label>Category<select id="addItemCategory" name="category"><option value="Food">Food</option><option value="Drinks">Drinks</option></select></label><label>Price<input id="addItemPrice" name="price" type="number" min="0" step="0.01" placeholder="0.00" required></label><label>Initial stock<input id="addItemStock" name="stock" type="number" min="0" step="1" value="10" required></label><div class="receipt-actions"><button class="outline-button" id="cancelAddItemButton" type="button">Cancel</button><button class="confirm-button" type="submit">Add item</button></div></form></div></div>
+	<div class="modal-backdrop" id="editPriceModal" aria-hidden="true"><div class="edit-price-modal" role="dialog" aria-modal="true" aria-labelledby="editPriceTitle"><button class="modal-close" id="closeEditPriceButton" type="button" aria-label="Close edit price dialog">×</button><div class="modal-kicker">Menu management</div><h2 id="editPriceTitle">Update price</h2><form id="editPriceForm" class="add-item-form"><label>Item name<input id="editPriceName" type="text" readonly></label><label>New price<input id="editPriceInput" name="price" type="number" min="0" step="0.01" placeholder="0.00" required></label><div class="receipt-actions"><button class="outline-button" id="cancelEditPriceButton" type="button">Cancel</button><button class="confirm-button" type="submit">Save price</button></div></form></div></div>
+	<div class="modal-backdrop" id="inventoryModal" aria-hidden="true"><div class="inventory-modal" role="dialog" aria-modal="true" aria-labelledby="inventoryTitle"><button class="modal-close" id="closeInventoryButton" type="button" aria-label="Close inventory dialog">×</button><div class="modal-kicker">Stock management</div><h2 id="inventoryTitle">Inventory</h2><div id="inventoryContent" class="inventory-list"></div></div></div>
+	<div class="modal-backdrop" id="reportsModal" aria-hidden="true"><div class="report-modal" role="dialog" aria-modal="true" aria-labelledby="reportsTitle"><button class="modal-close" id="closeReportsButton" type="button" aria-label="Close reports dialog">×</button><div class="modal-kicker">Sales analytics</div><h2 id="reportsTitle">Sales report</h2><div id="reportsContent" class="report-content"></div><div class="receipt-actions"><button class="outline-button" id="printReportButton" type="button">Print report</button></div></div></div>
+	<div class="modal-backdrop" id="historyModal" aria-hidden="true"><div class="history-modal" role="dialog" aria-modal="true" aria-labelledby="historyTitle"><button class="modal-close" id="closeHistoryButton" type="button" aria-label="Close order history">×</button><div class="modal-kicker">Completed orders</div><h2 id="historyTitle">Order history</h2><div id="historyContent"></div></div></div>
+	<div class="modal-backdrop" id="receiptModal" aria-hidden="true"><div class="receipt-modal" role="dialog" aria-modal="true" aria-labelledby="receiptTitle"><button class="modal-close" id="closeReceiptButton" type="button" aria-label="Close receipt">×</button><div class="receipt-header"><div class="brand-mark">P</div><div><h2 id="receiptTitle">POS System</h2><p>Cashier receipt</p></div></div><div id="receiptContent"></div><div class="receipt-actions"><button class="outline-button" id="printReceiptButton" type="button">Print receipt</button><button class="confirm-button" id="doneReceiptButton" type="button">Done</button></div></div></div>
+	<script src="script.js"></script>
+</body>
+</html>
